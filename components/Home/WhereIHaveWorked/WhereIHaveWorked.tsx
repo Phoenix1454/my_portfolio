@@ -9,11 +9,10 @@ import JobDescription from "./Descriptions/JobDescription"; // Corrected import 
 export default function WhereIHaveWorked() {
   const { personalInfo } = config; // Access personalInfo from config
 
-  // CRITICAL CHANGE 1: Initialize DescriptionJob with the first experience item's TITLE, not company name.
+  // Initialize DescriptionJob with the first experience item's title
   const [DescriptionJob, setDescriptionJob] = React.useState(personalInfo.experience[0]?.title || "");
 
   const GetDescription = () => {
-    // CRITICAL CHANGE 2: Find the selected job based on the UNIQUE TITLE, not company name.
     const selectedJob = personalInfo.experience.find(job => job.title === DescriptionJob);
     if (selectedJob) {
       return <JobDescription job={selectedJob} />;
@@ -50,7 +49,7 @@ export default function WhereIHaveWorked() {
 }
 
 const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any }) => {
-  const [barPosition, setBarPosition] = React.useState<Number>(0); // Start at 0 for the first company
+  const [barPosition, setBarPosition] = React.useState<number>(0); // Start at 0 for the first company
   const [companyNameBackgroundColorGreen, setCompanyNameBackgroundColorGreen] = React.useState<boolean[]>(
     Array(props.personalInfo.experience.length).fill(false)
   );
@@ -64,36 +63,34 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
       // Initialize the parent state with the title of the first job
       props.setDescriptionJob(props.personalInfo.experience[0].title);
     }
-  }, [props.personalInfo.experience, props]); // Re-run if experience data changes
+  }, [props.personalInfo.experience]); // Re-run if experience data changes
+
+  const handleButtonClick = (index: number, jobTitle: string) => {
+    setBarPosition(index * 43); // Update bar position
+    props.setDescriptionJob(jobTitle); // Update selected job title
+    const newActiveState = Array(props.personalInfo.experience.length).fill(false);
+    newActiveState[index] = true;
+    setCompanyNameBackgroundColorGreen(newActiveState); // Update active tab state
+  };
 
   const CompanyButton = (buttonProps: {
-    BarPosition: Number;
-    CompanyName: string;
-    DescriptionJob: string; // This is now a unique job identifier (the title)
-    ButtonOrderOfcompanyNameBackgroundColorGreen: number;
-    setDescriptionJob: Function;
-    CompanyNameBackgroundColorGreen: boolean[];
+    index: number;
+    companyName: string;
+    jobTitle: string;
   }) => {
     return (
       <button
-        onClick={() => {
-          setBarPosition(buttonProps.BarPosition);
-          // Set the state with the UNIQUE identifier (job title)
-          buttonProps.setDescriptionJob(buttonProps.DescriptionJob);
-          const newActiveState = Array(props.personalInfo.experience.length).fill(false);
-          newActiveState[buttonProps.ButtonOrderOfcompanyNameBackgroundColorGreen] = true;
-          setCompanyNameBackgroundColorGreen(newActiveState);
-        }}
+        onClick={() => handleButtonClick(buttonProps.index, buttonProps.jobTitle)}
         className={`flex-none sm:text-sm text-xs text-center md:text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded font-mono
              py-3 md:pl-6 md:px-4 md:w-44 w-32 duration-500
              ${
-               buttonProps.CompanyNameBackgroundColorGreen[buttonProps.ButtonOrderOfcompanyNameBackgroundColorGreen]
+               companyNameBackgroundColorGreen[buttonProps.index]
                  ? "bg-ResumeButtonHover text-AAsecondary"
                  : "text-gray-500"
              }`}
       >
-        {buttonProps.CompanyName}
+        {buttonProps.companyName}
       </button>
     );
   };
@@ -121,13 +118,10 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
         <div className="flex flex-row md:flex-col">
           {props.personalInfo.experience.map((job: any, index: number) => (
             <CompanyButton
-              key={job.title} // CRITICAL CHANGE 3: Use the job title as the unique key
-              ButtonOrderOfcompanyNameBackgroundColorGreen={index}
-              CompanyName={job.company} // You can still display the company name if you want
-              BarPosition={index * 43} 
-              DescriptionJob={job.title} // CRITICAL CHANGE 4: Pass the unique job title to set the state
-              CompanyNameBackgroundColorGreen={companyNameBackgroundColorGreen}
-              setDescriptionJob={props.setDescriptionJob}
+              key={job.title} // Use the job title as the unique key
+              index={index}
+              companyName={job.company} // You can still display the company name if you want
+              jobTitle={job.title} // Pass the unique job title to set the state
             />
           ))}
         </div>
