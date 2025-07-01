@@ -15,6 +15,7 @@ import "aos/dist/aos.css";
 import Head from "next/head";
 import Maintenance from "../components/Home/Maintenance/Maintenance";
 import config from '../config'; // Import the config
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
@@ -117,6 +118,7 @@ export default function Home() {
       {/* ) : ( */}
         {/* <Maintenance /> */}
       {/* )} */}
+      {isProd && <Analytics />}
     </>
   );
 }
