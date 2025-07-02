@@ -119,6 +119,15 @@ const config = {
   projects: [
     {
       id: 1,
+      title: 'VR Dashboard',
+      description: 'A virtual reality dashboard project. This project showcases my skills in VR development and dashboard design. It allows users to interact with data in a virtual environment, providing an immersive experience for data visualization and analysis. It demonstrates my understanding of VR technologies and user interface design in a 3D space.',
+      image: '/images/projects/vr-dashboard-screenshot.png',
+      technologies: ['VR', 'Dashboard', 'Unity'],
+      github_url: 'https://github.com/Phoenix1454/vr-dashboard.git',
+      live_url: null,
+    },
+    {
+      id: 2,
       title: 'Data Warehousing Coursework',
       description: 'A project involving data warehousing principles. This project demonstrates my understanding of data warehousing concepts and practices.',
       image: '/images/projects/data-warehousing-screenshot.jpg', 
@@ -127,7 +136,7 @@ const config = {
       live_url: null, // No hosted link, so set to null
     },
     {
-      id: 2,
+      id: 3,
       title: 'React To-Do App',
       description: 'A simple to-do application built with React. This project showcases my skills in React and front-end development. It allows users to add, delete, and mark tasks as completed. It also demonstrates my understanding of state management and component-based architecture in React.',
       image: '/images/projects/react-todo-app-screenshot.png',
@@ -135,21 +144,13 @@ const config = {
       github_url: 'https://github.com/Phoenix1454/react-todo-app.git',
       live_url: null,
     },
-    {
-      id: 3,
-      title: 'VR Dashboard',
-      description: 'A virtual reality dashboard project. This project showcases my skills in VR development and dashboard design. It allows users to interact with data in a virtual environment, providing an immersive experience for data visualization and analysis. It demonstrates my understanding of VR technologies and user interface design in a 3D space.',
-      image: '/images/projects/vr-dashboard-screenshot.png',
-      technologies: ['VR', 'Dashboard', 'Unity (or whatever you used)'],
-      github_url: 'https://github.com/Phoenix1454/vr-dashboard.git',
-      live_url: null,
-    },
+    
     {
       id: 4,
       title: 'RPTS1 Project',
       description: 'A project from RPTS1. This project showcases my skills in data analysis and reporting. It involves analyzing data from various sources and generating reports to provide insights into business performance. It demonstrates my ability to work with large datasets, perform data cleaning and transformation, and create meaningful visualizations to communicate findings effectively.',
       image: '/images/projects/rpts1-screenshot.jpeg',
-      technologies: ['Python', 'SQL', 'Something else'],
+      technologies: ['Python', 'SQL', 'Data Analysis'],
       github_url: 'https://github.com/Phoenix1454/RPTS1.git',
       live_url: null,
     },
