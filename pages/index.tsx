@@ -4,7 +4,6 @@ import MyName from "../components/Home/MyName/MyName";
 import { useContext, useEffect, useState, useRef } from "react";
 import SocialMediaArround from "../components/Home/SocialMediaArround/SocialMediaArround";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
-import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
 import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWorked";
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
@@ -19,7 +18,6 @@ import { Analytics } from "@vercel/analytics/react";
 
 export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
-  const [ShowThisCantBeReached, setShowThisCantBeReached] = useState(true);
   const [ShowMe, setShowMe] = useState(false);
   const context = useContext(AppContext);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -41,10 +39,6 @@ export default function Home() {
     setTimeout(() => {
       setShowElement(true);
     }, 4500);
-
-    setTimeout(() => {
-      setShowThisCantBeReached(false);
-    }, 5400);
 
     setTimeout(() => {
       setShowElement(false);
@@ -100,7 +94,7 @@ export default function Home() {
       {/* CRITICAL CHANGE 5: Removed the blacklist check to simplify */}
       {/* {!isBlackListed ? ( */}
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
-          {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
+        {context.sharedState.finishedLoading ? <></> : <></>}
           {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
           <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
           <MyName finishedLoading={context.sharedState.finishedLoading} />
