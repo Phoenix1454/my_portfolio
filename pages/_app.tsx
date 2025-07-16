@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         IntervalEvent: null,
       },
     },
-    finishedLoading: false,
+    finishedLoading: true,
   });
 
   return (

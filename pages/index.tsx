@@ -32,15 +32,6 @@ export default function Home() {
   // This code is no longer needed since we removed the feature
   
   // CRITICAL CHANGE 3: Removed the interval Cookie timer setter and event listener removals
-  useEffect(() => {
-    // Immediately set finishedLoading to true to show main content
-    context.sharedState.finishedLoading = true;
-    context.setSharedState(context.sharedState);
-
-    // All other setTimeout calls related to ShowElement, ShowThisCantBeReached, etc., are removed.
-    // The page will now render almost instantly.
-
-  }, [context]);
 
   // The Aos.init useEffect remains as is:
   useEffect(() => {
