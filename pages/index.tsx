@@ -1,5 +1,4 @@
 import Header from "../components/Header/Header";
-import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
 import { useContext, useEffect, useState, useRef } from "react";
 import SocialMediaArround from "../components/Home/SocialMediaArround/SocialMediaArround";
@@ -17,7 +16,6 @@ import config from '../config'; // Import the config
 import { Analytics } from "@vercel/analytics/react";
 
 export default function Home() {
-  const [ShowElement, setShowElement] = useState(false);
   const [ShowMe, setShowMe] = useState(false);
   const context = useContext(AppContext);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -35,19 +33,16 @@ export default function Home() {
   
   // CRITICAL CHANGE 3: Removed the interval Cookie timer setter and event listener removals
   useEffect(() => {
-    // This part of the code is a simple loading sequence
-    setTimeout(() => {
-      setShowElement(true);
-    }, 4500);
+    // Immediately set finishedLoading to true to show main content
+    context.sharedState.finishedLoading = true;
+    context.setSharedState(context.sharedState);
 
-    setTimeout(() => {
-      setShowElement(false);
-      setShowMe(true);
-      context.sharedState.finishedLoading = true;
-      context.setSharedState(context.sharedState);
-    }, 10400);
+    // All other setTimeout calls related to ShowElement, ShowThisCantBeReached, etc., are removed.
+    // The page will now render almost instantly.
+
   }, [context]);
 
+  // The Aos.init useEffect remains as is:
   useEffect(() => {
     Aos.init({ duration: 2000, once: true });
   }, []);
@@ -95,7 +90,6 @@ export default function Home() {
       {/* {!isBlackListed ? ( */}
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
         {context.sharedState.finishedLoading ? <></> : <></>}
-          {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
           <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
           <MyName finishedLoading={context.sharedState.finishedLoading} />
           <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
