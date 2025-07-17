@@ -36,7 +36,14 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
       ))}
 
       {/* 4. Use the resume URL from config */}
-      <a href={nav.resumeUrl} target={"_blank"} rel="noreferrer">
+      <a href={nav.resumeUrl} target={"_blank"} rel="noreferrer" onClick={() => { // <--- The correct way: assign an arrow function
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'resume_download', {
+        'event_category': 'engagement',
+        'event_label': 'Resume Download Button'
+      });
+    }
+  }}>
         <motion.button
           initial={{
             y: -40,

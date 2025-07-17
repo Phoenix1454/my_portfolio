@@ -49,7 +49,14 @@ const MobileMenu = props => {
           ))}
 
           {/* 4. Use the resume URL from config */}
-          <a href={nav.resumeUrl} target={"_blank"} rel="noreferrer">
+          <a href={nav.resumeUrl} target={"_blank"} rel="noreferrer" onClick={() => { // <--- The correct way: assign an arrow function
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'resume_download', {
+        'event_category': 'engagement',
+        'event_label': 'Resume Download Button'
+      });
+    }
+  }}>
             <button
               className="rounded border font-Text2  border-AAsecondary
              hover:bg-ResumeButtonHover py-2 sm:py-4 px-5 sm:px-10 text-xs text-AAsecondary"
