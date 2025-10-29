@@ -9,7 +9,7 @@ A modern, responsive portfolio website built with **Next.js** and **Tailwind CSS
 - Clean and minimal UI.
 
 ### 🚀 **Live Demo**
-- **[View Live Portfolio](https://your-vercel-url.com)** 
+- **[View Live Portfolio](https://www.amit-kumar.tech)** 
 
 ### 🛠️ **Tech Stack**
 - **Framework:** Next.js
