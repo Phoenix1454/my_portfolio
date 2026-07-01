@@ -239,6 +239,26 @@ export default {
       tags: ['Cyber Scallywags', 'DSF', 'Tech Event'],
     },
   ],
+  openSource: [
+    {
+      repo: 'langchain-ai/langgraph',
+      pr: '#8238',
+      prUrl: 'https://github.com/langchain-ai/langgraph/pull/8238',
+      title: 'Fix typo GraphRecursionError in create_react_agent docstring',
+      description: 'Fixed a typo in the create_react_agent docstring that had been in the codebase unnoticed.',
+      status: 'open',
+      type: 'Bug Fix',
+    },
+    {
+      repo: 'langchain-ai/langgraph',
+      pr: '#8239',
+      prUrl: 'https://github.com/langchain-ai/langgraph/pull/8239',
+      title: 'Add unit tests for NamedBarrierValue and NamedBarrierValueAfterFinish',
+      description: 'Added 13 unit tests covering both channel classes that had zero test coverage — barrier semantics, checkpoint round-trips, consume/reset behaviour, and copy independence.',
+      status: 'open',
+      type: 'Tests',
+    },
+  ],
   nav: {
     sections: [
       { id: 'aboutSection', name: 'About' },

@@ -7,6 +7,7 @@ import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWork
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 import TechLife from "../components/Home/TechLife/TechLife";
+import OpenSource from "../components/Home/OpenSource/OpenSource";
 import Footer from "../components/Footer/Footer";
 import AppContext from "../components/AppContextFolder/AppContext";
 import Aos from "aos";
@@ -76,7 +77,7 @@ export default function Home() {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta name="keywords" content="Data Analyst London, MSc Data Science Westminster, Palette Works Founder, Python Data Engineering, Data Analyst, Machine Learning, Full Stack Developer" />
+        <meta name="keywords" content="AI Engineer London, LangGraph developer, multi-agent AI systems, RAG pipelines, LangChain developer, MSc Data Science Westminster, Python AI engineer, agentic AI, open source contributor" />
         {/* Open Graph / Facebook */}
         <meta property="og:url" content={meta.url} />
         <link rel="canonical" href={meta.url} />
@@ -106,6 +107,7 @@ export default function Home() {
         {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}
         {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
         {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
+        {context.sharedState.finishedLoading ? <OpenSource /> : <></>}
         {context.sharedState.finishedLoading ? <TechLife /> : <></>}
         {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
         {context.sharedState.finishedLoading ? (
