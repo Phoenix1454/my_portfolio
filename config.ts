@@ -4,9 +4,9 @@ export default {
   // My all personal and professional information
   personalInfo: {
     name: 'Amit Kumar',
-    tagline: 'Data Scientist | Building LLM & Agentic AI Systems in Production | RAG · LangGraph · Python',
-    title: 'Data Scientist | Building LLM & Agentic AI Systems in Production',
-    bio: 'Data Scientist & AI Engineer | MSc Data Science @ Westminster | Building intelligent systems with LLMs, RAG pipelines, and Agentic AI. Shipping production AI at Cyber Scallywags.',
+    tagline: 'I build multi-agent AI systems that research, reason, and revise their own output.',
+    title: 'AI Engineer — LangGraph · RAG · Python',
+    bio: 'I build agentic AI systems — things that plan, use tools, and improve their own outputs without hand-holding. Currently shipping multi-agent pipelines at Cyber Scallywags. MSc Data Science @ University of Westminster, London.',
     profilePicture: '/images/blog/seven-sisters.jpeg',
     contact: {
       email: 'ak1454789@gmail.com',
@@ -237,6 +237,63 @@ export default {
       caption: 'We shipped it. Presenting the DSF Companion at the Data Science Festival — over a year of work, live in front of hundreds of people. Lead Engineer badge and everything.',
       image: '/images/blog/dsf-event.jpeg',
       tags: ['Cyber Scallywags', 'DSF', 'Tech Event'],
+    },
+  ],
+  blog: [
+    {
+      slug: 'self-critiquing-agents-langgraph',
+      title: 'How I built a multi-agent system that critiques its own output',
+      excerpt: 'Most AI pipelines run once and return whatever the model produces. I wanted something different — a system that reviews its own work and rewrites until it\'s good enough. Here\'s how I built it with LangGraph.',
+      date: 'July 1, 2026',
+      readTime: '6 min read',
+      tags: ['LangGraph', 'Multi-Agent', 'Python'],
+      content: `Most AI pipelines work like this: you send a prompt, you get a response, you're done. That works fine for simple tasks. But if you want a researched, structured report on a complex topic — the first draft is rarely good enough.
+
+I wanted to build something that knew that. A system that would write a report, read it back critically, and decide whether to revise or ship it.
+
+## The architecture
+
+Four agents, one state machine:
+
+- **Supervisor** — reads the current state and decides which agent runs next
+- **Researcher** — pulls live web data via Tavily Search
+- **Writer** — synthesises research into a structured 900–1400 word report
+- **Critiquer** — scores the draft across five dimensions and returns structured feedback
+
+The loop runs until the Critiquer approves the output or three revision cycles complete — whichever comes first.
+
+## Why LangGraph
+
+The key insight is that this isn't a chain — it's a graph with cycles. The Writer can run multiple times. The Supervisor can route back to the Researcher if the draft reveals gaps in the research.
+
+LangGraph models this as a \`StateGraph\` where each agent is a node and routing is handled by conditional edges off the Supervisor. There's no hardcoded sequencing anywhere. The Supervisor just reads the state and decides.
+
+\`\`\`python
+def supervisor_node(state: ResearchState) -> dict:
+    if not state.get("research"):
+        return {"next": "researcher"}
+    if not state.get("draft"):
+        return {"next": "writer"}
+    if state.get("critique") and state["critique"]["approved"]:
+        return {"next": END}
+    if state.get("revision_count", 0) >= 3:
+        return {"next": END}
+    return {"next": "writer"}
+\`\`\`
+
+Simple. The complexity lives in the agents, not the routing.
+
+## The critique loop
+
+The Critiquer scores the draft across five dimensions: coverage, evidence quality, structure, clarity, and actionability. Each gets a score out of 10. If the average is below 7, it returns specific feedback and the Writer gets another pass.
+
+This is where it gets interesting. The Writer receives not just the original research but the full critique — what was weak, why, and what a better version would do differently. The rewrites are genuinely better.
+
+## What I'd do differently
+
+The Researcher runs once. In a better version, the Critiquer's feedback would trigger targeted follow-up research — "the evidence for this claim is thin, go find more." That's the next thing I'm building.
+
+The code is on [GitHub](https://github.com/Phoenix1454/Multi-Agent-Research-Assistant-Langgraph) if you want to dig in.`,
     },
   ],
   openSource: [

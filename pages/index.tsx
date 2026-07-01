@@ -8,6 +8,7 @@ import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIve
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 import TechLife from "../components/Home/TechLife/TechLife";
 import OpenSource from "../components/Home/OpenSource/OpenSource";
+import Blog from "../components/Home/Blog/Blog";
 import Footer from "../components/Footer/Footer";
 import AppContext from "../components/AppContextFolder/AppContext";
 import Aos from "aos";
@@ -108,6 +109,7 @@ export default function Home() {
         {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
         {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
         {context.sharedState.finishedLoading ? <OpenSource /> : <></>}
+        {context.sharedState.finishedLoading ? <Blog /> : <></>}
         {context.sharedState.finishedLoading ? <TechLife /> : <></>}
         {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
         {context.sharedState.finishedLoading ? (
