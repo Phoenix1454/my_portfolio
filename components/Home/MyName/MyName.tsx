@@ -46,7 +46,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
           opacity: { delay: props.finishedLoading ? 0 : 10.6, duration: props.finishedLoading ? 0 : 0.2 },
           y: { delay: props.finishedLoading ? 0 : 10.6, duration: props.finishedLoading ? 0 : 0.2 },
         }}
-        className="text-gray-400 font-bold text-3xl lg:text-7xl sm:text-5xl md:text-6xl mt-4"
+        className="text-gray-400 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-4"
       >
         {personalInfo.tagline} {/* Use dynamic tagline */}
       </motion.h2>
@@ -77,11 +77,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
         }}
         className="mt-12"
       >
-        <a href={"/resume.pdf"} target={"_blank"} rel="noreferrer">
-          <button className="bg-AAprimary text-AAsecondary border rounded px-4 sm:px-8 py-3 sm:py-4 border-AAsecondary">
-            Check out my resume!
-          </button>
-        </a>
+        {/* Resume button removed */}
       </motion.div>
     </div>
   );

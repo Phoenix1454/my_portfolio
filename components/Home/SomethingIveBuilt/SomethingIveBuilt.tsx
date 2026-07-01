@@ -33,9 +33,9 @@ export default function SomethingIveBuilt() {
         <div className="bg-gray-400 h-[0.2px] w-full xl:w-1/3 md:w-1/2"></div>
       </div>
 
-      <div className="flex flex-col   xl:space-y-36 space-y-8 md:space-y-28">
+      <div className="flex flex-col space-y-24 md:space-y-32 xl:space-y-40">
         {/* // ? Dynamically render projects from config.ts */}
-        {projects.map((project, index) => {
+        {[...projects].reverse().map((project, index) => {
           // Check if the project has an image
           if (!project.image) return null;
 
@@ -44,96 +44,120 @@ export default function SomethingIveBuilt() {
 
           return (
             <div
-              key={project.id} // Use a unique key
+              key={project.id}
               data-aos="fade-up"
-              className="relative md:grid md:grid-cols-12 w-full md:h-96 group"
+              className="relative w-full group"
             >
-              {/* Left image or Right image based on index */}
-              <div
-                className={`hidden bg-AAprimary z-10 py-4 absolute md:grid grid-cols-12 w-full h-full content-center ${
-                  isOdd ? "col-start-1" : "col-start-6"
-                } `}
-              >
-                <div
-                  className={`relative rounded w-full h-full ${
-                    isOdd ? "col-span-7 col-start-1" : "col-span-7 col-start-6"
-                  } `}
-                >
-                  {project.live_url ? (
-                    <a href={project.live_url} target="_blank" rel="noreferrer">
-                      <div
-                        className="absolute w-full h-full rounded bg-AAprimary transition-opacity opacity-50 hover:opacity-0 hover:cursor-pointer duration-300"
-                      ></div>
-                    </a>
-                  ) : (
-                    <div
-                      className="absolute w-full h-full rounded bg-AAprimary transition-opacity opacity-50 duration-300"
-                    ></div>
-                  )}
-                  <Img src={project.image} alt={project.title} className={`w-full rounded h-full `} />
+              {/* Desktop Layout */}
+              <div className="hidden md:grid md:grid-cols-12 gap-4 items-center">
+                {/* Image Side */}
+                <div className={`col-span-7 ${isOdd ? 'order-2' : 'order-1'}`}>
+                  <div className="relative rounded overflow-hidden bg-gray-800 min-h-[260px]">
+                    {project.live_url ? (
+                      <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                        <div className="absolute inset-0 bg-AAprimary opacity-50 hover:opacity-0 transition-opacity duration-300 z-10"></div>
+                      </a>
+                    ) : (
+                      <div className="absolute inset-0 bg-AAprimary opacity-50 z-10"></div>
+                    )}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const parent = (e.target as HTMLImageElement).parentElement;
+                        if (parent) {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                          parent.style.background = 'linear-gradient(135deg, #1a2035 0%, #0d1117 100%)';
+                          parent.innerHTML += `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5"><span style="color:#64ffda;font-family:monospace;font-size:0.75rem;opacity:0.5">${project.title}</span></div>`;
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Content Side */}
+                <div className={`col-span-5 ${isOdd ? 'order-1' : 'order-2'} ${isOdd ? 'pr-8' : 'pl-8'}`}>
+                  <div className={`flex flex-col space-y-4 ${isOdd ? 'items-end text-right' : 'items-start text-left'}`}>
+                    <div className="flex flex-col space-y-1">
+                      <span className="text-AAsecondary text-sm">Recent Project</span>
+                      {project.live_url ? (
+                        <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                          <h3 className="text-gray-200 font-bold text-xl hover:text-AAsecondary transition-colors cursor-pointer">
+                            {project.title}
+                          </h3>
+                        </a>
+                      ) : (
+                        <h3 className="text-gray-200 font-bold text-xl">
+                          {project.title}
+                        </h3>
+                      )}
+                    </div>
+
+                    <div className="bg-AAtertiary rounded-md p-6 w-full">
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    <ul className={`flex flex-wrap gap-3 text-gray-400 text-xs ${isOdd ? 'justify-end' : 'justify-start'}`}>
+                      {project.technologies.map((tech, techIndex) => (
+                        <li key={techIndex}>{tech}</li>
+                      ))}
+                    </ul>
+
+                    <div className="flex space-x-4">
+                      {project.github_url && <GithubIcon link={project.github_url} />}
+                      {project.live_url && (
+                        <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink url={""} router={router} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Content on the right or left based on index */}
-              <div
-                className={`md:absolute py-4 md:grid md:grid-cols-12 w-full h-full content-center ${
-                  isOdd ? "md:order-2" : "md:order-1"
-                }`}
-              >
-                {/* Background for text in mobile responsive */}
-                <div
-                  className={`absolute w-full h-full bg-opacity-70 z-0 ${
-                    isOdd ? "" : "md:order-2"
-                  }`}
-                >
-                  <div className="relative w-full h-full">
-                    <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
-                    <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
-                    <Img src={project.image} alt={project.title} className={`w-full h-full`} />
-                  </div>
+              {/* Mobile Layout */}
+              <div className="md:hidden relative">
+                <div className="relative rounded overflow-hidden mb-4">
+                  <div className="absolute inset-0 bg-AAsecondary opacity-10 z-10"></div>
+                  <div className="absolute inset-0 bg-AAprimary opacity-80 z-10"></div>
+                  <Img src={project.image} alt={project.title} className="w-full h-64 object-cover" />
                 </div>
 
-                <div
-                  className={`px-8 pt-8 sm:pt-12 md:py-0 ${
-                    isOdd ? "xl:col-span-6 xl:col-start-7 col-start-5" : "xl:col-span-6"
-                  } col-span-8 flex flex-col items-start ${
-                    isOdd ? "md:items-end" : ""
-                  } space-y-3 z-10`}
-                >
-                  <div className={`flex flex-col space-y-1 ${isOdd ? "md:items-end" : ""} z-10`}>
-                    <span className="text-AAsecondary text-base">Recent Project</span>
+                <div className="flex flex-col space-y-3 px-4">
+                  <div className="flex flex-col space-y-1">
+                    <span className="text-AAsecondary text-sm">Recent Project</span>
                     {project.live_url ? (
                       <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                        <span className="md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
+                        <h3 className="text-AAsecondary font-bold text-xl">
                           {project.title}
-                        </span>
+                        </h3>
                       </a>
                     ) : (
-                      <span className="md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
+                      <h3 className="text-AAsecondary font-bold text-xl">
                         {project.title}
-                      </span>
+                      </h3>
                     )}
                   </div>
-                  <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6 z-10">
-                    <p className="text-gray-300 md:text-gray-400 text-left">
+
+                  <div className="py-4">
+                    <p className="text-gray-300 text-sm leading-relaxed">
                       {project.description}
                     </p>
                   </div>
-                  <ul
-                    className={`flex flex-wrap w-full text-gray-300 md:text-gray-400 text-sm font-Text2 ${
-                      isOdd ? "md:justify-end" : "md:justify-start"
-                    }`}
-                  >
+
+                  <ul className="flex flex-wrap gap-3 text-gray-300 text-xs">
                     {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} className="pr-4 z-10">
-                        {tech}
-                      </span>
+                      <li key={techIndex}>{tech}</li>
                     ))}
                   </ul>
-                  <div className="z-10 flex fle-row space-x-5 ">
+
+                  <div className="flex space-x-4 pt-2">
                     {project.github_url && <GithubIcon link={project.github_url} />}
                     {project.live_url && (
-                      <a href={project.live_url} target={"_blank"} rel="noreferrer">
+                      <a href={project.live_url} target="_blank" rel="noopener noreferrer">
                         <ExternalLink url={""} router={router} />
                       </a>
                     )}

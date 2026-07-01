@@ -6,6 +6,7 @@ import AboutMe from "../components/Home/AboutMe/AboutMe";
 import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWorked";
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
+import TechLife from "../components/Home/TechLife/TechLife";
 import Footer from "../components/Footer/Footer";
 import AppContext from "../components/AppContextFolder/AppContext";
 import Aos from "aos";
@@ -30,7 +31,7 @@ export default function Home() {
 
   // CRITICAL CHANGE 2: Removed useEffect hooks for fetching user location and blacklist check
   // This code is no longer needed since we removed the feature
-  
+
   // CRITICAL CHANGE 3: Removed the interval Cookie timer setter and event listener removals
 
   // The Aos.init useEffect remains as is:
@@ -39,7 +40,7 @@ export default function Home() {
   }, []);
 
   console.log("website is rendering...");
-  
+
   // CRITICAL CHANGE 4: Use SEO metadata from config.ts
   const { personalInfo } = config;
   const meta = {
@@ -49,70 +50,72 @@ export default function Home() {
     url: personalInfo.socialLinks.personalWebsite, // Use your personal website URL
     type: "website",
   };
-  
+
   const isProd = process.env.NODE_ENV === "production";
 
   return (
     <>
       <Head>
 
-      <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-SYWG2X0R0E"
-  ></script>
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-SYWG2X0R0E');
+        gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
       `,
-    }}
-  ></script>
+          }}
+        ></script>
 
-        
-  <title>{meta.title}</title>
-  <meta name="robots" content="follow, index" />
-  <meta content={meta.description} name="description" />
-  {/* Open Graph / Facebook */}
-  <meta property="og:url" content={meta.url} />
-  <link rel="canonical" href={meta.url} />
-  <meta property="og:type" content={meta.type} />
-  <meta property="og:site_name" content={personalInfo.name} />
-  <meta property="og:description" content={meta.description} />
-  <meta property="og:title" content={meta.title} />
-  <meta property="og:image" content={meta.image} />
-  {/* Twitter */}
-  {/* The @ts-ignore is a temporary fix to make the build pass. */}
-  {/* It is needed because the 'twitter' property is commented out in config.ts. */}
-  {/* @ts-ignore */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content={personalInfo.socialLinks.twitter ? `@${personalInfo.socialLinks.twitter.split('/').pop()}` : '@your-twitter-handle'} />
 
-  <meta name="twitter:title" content={meta.title} />
-  <meta name="twitter:description" content={meta.description} />
-  <meta name="twitter:image" content={meta.image} />
-</Head>
+        <title>{meta.title}</title>
+        <meta name="robots" content="follow, index" />
+        <meta content={meta.description} name="description" />
+        <meta name="keywords" content="Data Analyst London, MSc Data Science Westminster, Palette Works Founder, Python Data Engineering, Data Analyst, Machine Learning, Full Stack Developer" />
+        {/* Open Graph / Facebook */}
+        <meta property="og:url" content={meta.url} />
+        <link rel="canonical" href={meta.url} />
+        <meta property="og:type" content={meta.type} />
+        <meta property="og:site_name" content={personalInfo.name} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:image" content={meta.image} />
+        {/* Twitter */}
+        {/* The @ts-ignore is a temporary fix to make the build pass. */}
+        {/* It is needed because the 'twitter' property is commented out in config.ts. */}
+        {/* @ts-ignore */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={personalInfo.socialLinks.twitter ? `@${personalInfo.socialLinks.twitter.split('/').pop()}` : '@your-twitter-handle'} />
+
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+      </Head>
       {/* CRITICAL CHANGE 5: Removed the blacklist check to simplify */}
       {/* {!isBlackListed ? ( */}
-        <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
+      <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
         {context.sharedState.finishedLoading ? <></> : <></>}
-          <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
-          <MyName finishedLoading={context.sharedState.finishedLoading} />
-          <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
-          {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}
-          {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
-          {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
-          {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
-          {context.sharedState.finishedLoading ? (
-            <Footer githubUrl={config.nav.resumeUrl} hideSocialsInDesktop={true} />
-          ) : (
-            <></>
-          )}
-        </div>
+        <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
+        <MyName finishedLoading={context.sharedState.finishedLoading} />
+        <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
+        {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}
+        {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
+        {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
+        {context.sharedState.finishedLoading ? <TechLife /> : <></>}
+        {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
+        {context.sharedState.finishedLoading ? (
+          <Footer githubUrl={config.nav.resumeUrl} hideSocialsInDesktop={true} />
+        ) : (
+          <></>
+        )}
+      </div>
       {/* ) : ( */}
-        {/* <Maintenance /> */}
+      {/* <Maintenance /> */}
       {/* )} */}
       {isProd && <Analytics />}
     </>

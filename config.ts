@@ -1,57 +1,70 @@
-const config = {
+// config.ts
+
+export default {
   // My all personal and professional information
   personalInfo: {
     name: 'Amit Kumar',
-    tagline: 'Data Analyst | Python, SQL, Excel | Turning Data into Insights',
-    title: 'Data Analyst | Transforming Data into Actionable Insights',
-    bio: 'As a Data Science and Analytics student at the University of Westminster, I specialize in leveraging data-driven strategies to solve business challenges. My background spans operations management, marketing, and customer service, allowing me to approach analytics with a strategic mindset.\n\nI’m passionate about turning raw data into business insights and continuously expanding my knowledge in data science, analytics, and machine learning. I’m actively seeking opportunities in data analysis, business intelligence, and data-driven decision-making. Let’s connect! If you’re looking for a data-driven problem solver who can blend analytics with strategy, feel free to reach out for full-time, internship, or project-based opportunities.',
-    profilePicture: '/images/Portfolio-portrait.jpg', 
+    tagline: 'Data Scientist | Building LLM & Agentic AI Systems in Production | RAG · LangGraph · Python',
+    title: 'Data Scientist | Building LLM & Agentic AI Systems in Production',
+    bio: 'Data Scientist & AI Engineer | MSc Data Science @ Westminster | Building intelligent systems with LLMs, RAG pipelines, and Agentic AI. Shipping production AI at Cyber Scallywags.',
+    profilePicture: '/images/blog/seven-sisters.jpeg',
     contact: {
-      email: 'amit.kumar.analytics@gmail.com',
+      email: 'ak1454789@gmail.com',
       phone: '+44 7778217377',
     },
     socialLinks: {
       github: 'https://github.com/phoenix1454',
       linkedin: 'https://www.linkedin.com/in/amitkumar1454',
-      twitter: 'https://twitter.com/your-twitter-username',
-      personalWebsite: 'https://phoenix1454.github.io/DevAmit/',
+      twitter: 'https://twitter.com/your-twitter-username', // Placeholder - fill this in
+      personalWebsite: 'https://www.amit-kumar.tech/',
+    },
+    currentFocus: {
+      headline: 'Current Focus',
+      items: [
+        {
+          title: 'MSc Data Science & Analytics',
+          description: 'Advancing expertise in machine learning, statistical modeling, and big data technologies at the University of Westminster (graduating Jan 2026).',
+          icon: '🎓',
+        },
+        {
+          title: 'Agentic AI Systems',
+          description: 'Building multi-agent reasoning pipelines with LangGraph and LangChain — shipping production RAG and tool-use systems at Cyber Scallywags.',
+          icon: '🤖',
+        },
+      ],
     },
     skills: {
-      top: ['Pandas', 'Scikit-Learn', 'Matplotlib'],
+      top: ['Python', 'LangGraph', 'LangChain', 'RAG', 'FastAPI', 'Neo4j'],
       technicalExpertise: [
         {
+          category: 'AI & LLMs',
+          tools: 'LangGraph, LangChain, LlamaIndex, PydanticAI, RAG Pipelines, Prompt Engineering, Agentic AI, Hugging Face Transformers',
+        },
+        {
           category: 'Programming',
-          tools: 'Python (Pandas, NumPy, Matplotlib, Seaborn), SQL',
+          tools: 'Python (Pandas, NumPy, Scikit-learn), SQL, JavaScript, TypeScript, Angular/Ionic, FastAPI',
         },
         {
-          category: 'Data Analytics',
-          tools: 'A/B testing, data visualization (Power BI, Tableau), data cleaning, statistical analysis',
+          category: 'Data & Databases',
+          tools: 'Neo4j (Graph DB), FAISS, Pinecone (vector DBs), PostgreSQL, A/B Testing, ETL/EDA, Tableau, Power BI',
         },
         {
-          category: 'Machine Learning',
-          tools: 'Basic algorithms, model building, and predictive analytics',
-        },
-        {
-          category: 'Web & Social Media Analytics',
-          tools: 'Google Analytics, SEO optimization, social media sentiment analysis',
+          category: 'Infrastructure & Tools',
+          tools: 'Docker, GitHub Actions, AWS/GCP basics, Git/GitHub, Google Analytics, MLFlow',
         },
       ],
     },
     languages: [
-      {
-        name: 'English',
-        level: 'Full Professional',
-      },
-      {
-        name: 'Hindi',
-        level: 'Native or Bilingual',
-      },
-      {
-        name: 'Japanese',
-        level: 'Elementary',
-      },
+      { name: 'English', level: 'Full Professional' },
+      { name: 'Hindi', level: 'Native or Bilingual' },
+      { name: 'Punjabi', level: 'Professional Working' },
+      { name: 'Sindhi', level: 'Native or Bilingual' },
+      { name: 'Japanese', level: 'Elementary' },
     ],
     certifications: [
+      'Neo4j & GenerativeAI Fundamentals',
+      'AuraDB Fundamentals (Neo4j)',
+      'Cypher Fundamentals (Neo4j)',
       'Selling with Authenticity',
       'JavaScript: Patterns',
       'Social Media Marketing for Small Business',
@@ -60,112 +73,180 @@ const config = {
     ],
     experience: [
       {
-        title: 'Head of Data Analytics | Python, SQL, A/B Testing, BI Tools',
+        title: 'AI Software Developer',
+        company: 'Cyber Scallywags',
+        duration: 'July 2025 - Present',
+        location: 'London Area, UK · Remote',
+        description: [
+          'Built the AI components of the DSF Companion App — a multi-agent event recommendation system for the Data Science Festival, presented live to hundreds of attendees.',
+          'Architected a RAG pipeline using Neo4j as a graph database and LlamaIndex for document retrieval, enabling intelligent context-aware event discovery.',
+          'Used PydanticAI as the agent framework to enforce type-safe LLM outputs and structured tool-use pipelines, improving reliability across the AI stack.',
+          'Built the full-stack application with Angular (Ionic) frontend and FastAPI backend, integrating RESTful APIs with RxJS Observables and robust error handling.',
+          'Debugged complex runtime failures across Docker-orchestrated microservices including JSON parsing errors from LLM responses and API contract mismatches between frontend and backend.',
+        ],
+      },
+      {
+        title: 'Operations Manager',
         company: 'The Future University',
-        duration: 'June 2023 - June 2024 (1 year 1 month)',
+        duration: 'June 2023 – June 2024 (1 year 1 month)',
         location: 'Sahibzada Ajit Singh Nagar, Punjab, India',
         description: [
-          'Analyzed 500,000+ user interactions on a live-streaming platform, identifying key engagement patterns and trends.',
-          'Conducted A/B testing on 10+ marketing campaigns, leading to a 12% increase in conversion rates through data-driven insights.',
-          'Tracked and optimized 25+ KPIs, resulting in a 20% boost in content engagement rates.',
-          'Automated weekly reports using Python (Pandas, Matplotlib), reducing manual data processing time by 30%.',
+          'Identified key engagement trends by segmenting the 500,000+ user interaction dataset using SQL queries and Python (Pandas) to isolate high-value user behaviors across the live-streaming platform.',
+          'Designed and executed 10+ A/B tests on marketing campaigns using statistical hypothesis testing (SciPy), achieving a 12% lift in conversion rates by validating winning variants through rigorous p-value analysis.',
+          'Built automated KPI dashboards in Tableau connecting to PostgreSQL databases, tracking 25+ performance metrics in real-time and driving a 20% improvement in content engagement through data-informed optimizations.',
+          'Engineered a Python ETL pipeline utilizing Pandas and Matplotlib to automate weekly reporting workflows, reducing manual data processing effort by 30% and enabling stakeholders to access insights within hours instead of days.',
         ],
       },
       {
-        title: 'Assistant Operations Intern | CRM Automation & Customer Engagement',
+        title: 'Assistant Operation Manager / Intern',
         company: 'The Future University',
-        duration: 'December 2022 - June 2023 (7 months)',
+        duration: 'Dec 2022 – Jun 2023 (7 months)',
         location: 'Mohali district, India',
         description: [
-          'Optimized a WhatsApp CRM tool for automated messaging, improving message delivery rate by 20%.',
-          'Streamlined workflows, reducing response time by 30% through automation.',
-          'Implemented targeted messaging strategies, increasing customer engagement by 25%.',
-          'Analyzed and resolved 50+ technical issues, ensuring smooth CRM operation.',
-          'Trained 5 team members, improving overall productivity by 15%.',
+          'Architected an automated messaging system by integrating WhatsApp Business API with a custom CRM platform, implementing webhook handlers and message queuing to improve delivery rates by 20%.',
+          'Streamlined customer communication workflows by developing Python scripts to automate response routing and prioritization logic, cutting average response time by 30% through intelligent message triage.',
+          'Implemented targeted segmentation strategies using customer behavior data and SQL analytics, creating personalized messaging campaigns that increased engagement metrics by 25%.',
+          'Diagnosed and resolved 50+ technical issues across the CRM stack by systematically debugging API integrations, database queries, and automation scripts to ensure 99.5% system uptime.',
+          'Coached 5 team members on CRM best practices and automation tools, creating documentation and training materials that improved team productivity by 15%.',
         ],
       },
       {
-        title: 'Social Media Analytics Research Assistant | Python, NLP, SEO Optimization, Data Visualization',
-        company: 'CHANDIGARH UNIVERSITY',
-        duration: 'November 2022 - December 2022 (2 months)',
+        title: 'Social Media Analytics Research Assistant',
+        company: 'Chandigarh University',
+        duration: 'Nov 2022 – Dec 2022 (2 months)',
         location: 'Gurugram, Haryana, India',
         description: [
-          'Extracted and analyzed 100,000+ social media posts from TikTok and Twitter using Python NLP (VADER, TextBlob).',
+          'Extracted and analyzed 100,000+ social media posts from TikTok and Twitter using Python NLP pipelines (VADER, TextBlob) to surface sentiment trends and engagement patterns.',
           'Developed a real-time Tableau dashboard to track livestream engagement, sentiment trends, and audience retention rates.',
-          'Conducted SEO analysis & TikTok ranking optimization, leading to 15% improvement in content discoverability.',
-          'Benchmarked 50+ top-performing TikTok influencers, identifying best-performing content strategies for follower growth.',
-          'Provided data-driven insights that influenced creator monetization strategies and feature adoption.',
+          'Conducted SEO analysis and TikTok ranking optimization, leading to a 15% improvement in content discoverability.',
+          'Benchmarked 50+ top-performing TikTok influencers, identifying best-performing content strategies that informed creator monetization recommendations.',
         ],
       },
     ],
     education: [
       {
-        degree: 'Msc Data Science and Analytics',
+        degree: 'Msc Data Science and Analytics, Computer Science',
         institution: 'University of Westminster',
-        duration: 'January 2025 - May 2026',
+        duration: 'Jan 2025 - Jan 2026',
       },
       {
         degree: 'BCA, Computer Science',
         institution: 'CHANDIGARH UNIVERSITY',
-        duration: 'August 2020 - June 2023',
+        duration: 'Aug 2020 - Jun 2023',
       },
       {
         degree: 'High School, Business/Commerce',
         institution: "St. Anselm's, Ajmer",
-        duration: 'August 2005 - July 2020',
+        duration: 'Aug 2005 - Jul 2020',
       },
     ],
   },
   projects: [
     {
       id: 1,
-      title: 'VR Dashboard',
-      description: 'A virtual reality dashboard project. This project showcases my skills in VR development and dashboard design. It allows users to interact with data in a virtual environment, providing an immersive experience for data visualization and analysis. It demonstrates my understanding of VR technologies and user interface design in a 3D space.',
-      image: '/images/projects/vr-dashboard-screenshot.png',
-      technologies: ['VR', 'Dashboard', 'Unity'],
-      github_url: 'https://github.com/Phoenix1454/vr-dashboard.git',
+      title: 'Multi-Agent Research Assistant',
+      description: 'An autonomous research pipeline built with LangGraph where four specialized AI agents — Supervisor, Researcher, Writer, and Critiquer — collaborate to research any topic and produce a structured, high-quality report. The system implements iterative quality revision loops where the Critiquer agent evaluates output and triggers rewrites until a quality threshold is met. Explore the codebase to see the LangGraph state machine, inter-agent messaging patterns, and how Together AI and Tavily are integrated for real-time web research and synthesis.',
+      image: '/images/projects/multi-agent-research.png',
+      technologies: ['LangGraph', 'LangChain', 'Together AI', 'Tavily', 'Streamlit', 'Python'],
+      github_url: 'https://github.com/Phoenix1454/Multi-Agent-Research-Assistant-Langgraph',
       live_url: null,
     },
     {
       id: 2,
-      title: 'Data Warehousing Coursework',
-      description: 'A project involving data warehousing principles. This project demonstrates my understanding of data warehousing concepts and practices.',
-      image: '/images/projects/data-warehousing-screenshot.jpg', 
-      technologies: ['Python', 'SQL', 'Data Warehousing'], // Add the technologies used
-      github_url: 'https://github.com/Phoenix1454/Data_warehousing_coursework_2.git',
-      live_url: null, // No hosted link, so set to null
+      title: 'Palette | AI-Powered Health Monitoring App',
+      description: 'Identified an opportunity to make at-home health monitoring more accessible. Led the end-to-end product development of Palette, a mobile health app, from initial concept to MVP. Conducted user research to define the core value proposition and designed a simple UI to translate complex biomarker data into actionable insights for users. The live demo showcases the precision timer interface, real-time image processing pipeline, and classification model output rendered in an intuitive, clinically-accurate format—all built on Ionic/Angular with Python backend services.',
+      image: '/images/palette-app-screenshot.jpeg',
+      technologies: ['Image Processing', 'Classification Model', 'iOS/Ionic', 'Product Management'],
+      github_url: 'https://github.com/Phoenix1454/Palette-App',
+      live_url: 'https://palette.engineer',
     },
     {
       id: 3,
-      title: 'React To-Do App',
-      description: 'A simple to-do application built with React. This project showcases my skills in React and front-end development. It allows users to add, delete, and mark tasks as completed. It also demonstrates my understanding of state management and component-based architecture in React.',
-      image: '/images/projects/react-todo-app-screenshot.png',
-      technologies: ['React', 'JavaScript', 'CSS'],
-      github_url: 'https://github.com/Phoenix1454/react-todo-app.git',
+      title: 'Zaro - Unified AI Marketing Platform',
+      description: 'Defined the product vision and strategy for Zaro, an AI platform designed to solve the problem of fragmented marketing data for small businesses. Built scalable ETL pipelines to ingest and normalize semi-structured data from disparate sources, including Google Ads, Meta, and CSV uploads, using Python and Pandas. Implemented a recommendation engine to provide AI-based insights on campaign performance, budget allocation, and A/B testing strategies to optimize marketing ROI. Review the codebase to see the modular ETL architecture, API integration patterns, and the machine learning recommendation logic powering data-driven marketing decisions.',
+      image: '/images/projects/zaro-marketing-ai.png',
+      technologies: ['ETL Pipeline', 'Python/Pandas', 'Google Ads API', 'Recommendation Engine', 'A/B Testing'],
+      github_url: 'https://github.com/Phoenix1454/Zaro-AI-Platform',
       live_url: null,
     },
-    
     {
       id: 4,
-      title: 'RPTS1 Project',
-      description: 'A project from RPTS1. This project showcases my skills in data analysis and reporting. It involves analyzing data from various sources and generating reports to provide insights into business performance. It demonstrates my ability to work with large datasets, perform data cleaning and transformation, and create meaningful visualizations to communicate findings effectively.',
-      image: '/images/projects/rpts1-screenshot.jpeg',
-      technologies: ['Python', 'SQL', 'Data Analysis'],
-      github_url: 'https://github.com/Phoenix1454/RPTS1.git',
+      title: 'Prompt-Based FinTech Investment Platform',
+      description: 'Developed an AI-native financial platform for novice investors, leveraging Large Language Models (LLMs) to simplify portfolio creation. Implemented an NLP front-end using prompt engineering techniques to translate natural language user goals (e.g., "invest in green tech with medium risk") into a structured, diversified investment profile. Integrated with real-time financial data APIs to track portfolio performance and execute trades. Explore the code to examine the prompt engineering framework, LLM response parsing logic, and the portfolio optimization algorithms that balance user intent with market data.',
+      image: '/images/projects/fintech-llm-platform.png',
+      technologies: ['NLP/LLMs', 'Prompt Engineering', 'Financial Data APIs', 'Investment Modeling'],
+      github_url: 'https://github.com/Phoenix1454/Fintech-LLM-Platform',
       live_url: null,
     },
+    {
+      id: 5,
+      title: 'Cyber Scallywags | Data Science Community Hub',
+      description: 'Designed and built a full-stack web application to serve as a central learning and networking hub for the Data Science Festival community. Developed a content recommendation system to personalize learning paths for members. Implemented a mentorship-matching feature using a skills-based algorithm to connect junior data scientists with experienced mentors within the community. The repository demonstrates full-stack architecture with React/Next.js frontend, Node.js backend, and the collaborative filtering algorithm powering personalized content recommendations.',
+      image: '/images/projects/cyber-scallywags-hub.png',
+      technologies: ['Full-Stack', 'Content Recommendation', 'Mentorship Algorithm', 'Data Science Community'],
+      github_url: 'https://github.com/Phoenix1454/DSF-Community-Hub',
+      live_url: null,
+    },
+    {
+      id: 6,
+      title: 'MLOps Automation Pipeline',
+      description: 'Built a robust MLOps pipeline for a classification model, automating model retraining, testing, and deployment to a production environment using GitHub Actions and Docker. Achieved continuous delivery with zero-downtime updates. The codebase showcases production-grade MLOps best practices including automated model versioning with MLFlow, containerized deployment workflows, CI/CD pipeline configuration, and monitoring hooks for model performance drift detection.',
+      image: '/images/projects/mlops-pipeline-screenshot.png',
+      technologies: ['Docker', 'FastAPI', 'GitHub Actions', 'MLFlow', 'Scikit-learn'],
+      github_url: 'https://github.com/Phoenix1454/MLOps-Pipeline',
+      live_url: null,
+    }
   ],
-    
+  techLife: [
+    {
+      id: 1,
+      date: 'February 14, 2025',
+      location: 'London, UK',
+      caption: 'Friday night cook-up with the crew. Someone had to make the biryani and it wasn\'t going to be anyone else. Good food, better company.',
+      image: '/images/blog/dinner-night.jpeg',
+      tags: ['London Life', 'Friends'],
+    },
+    {
+      id: 2,
+      date: 'March 29, 2025',
+      location: 'Islington, London',
+      caption: 'Spring walks around London. Cherry blossoms hit different when you\'re procrastinating on your dissertation.',
+      image: '/images/blog/london-spring.jpeg',
+      tags: ['London', 'Spring'],
+    },
+    {
+      id: 3,
+      date: 'June 15, 2025',
+      location: 'Seven Sisters, East Sussex',
+      caption: 'Day trip to the Seven Sisters cliffs. This is why you survive a British winter — days like this.',
+      image: '/images/blog/seven-sisters.jpeg',
+      tags: ['Adventure', 'UK'],
+    },
+    {
+      id: 4,
+      date: 'November 8, 2025',
+      location: 'London, UK',
+      caption: 'Rooftop sunset with the squad. Sometimes you need to step away from the code and remember why you\'re building things.',
+      image: '/images/blog/rooftop-crew.jpeg',
+      tags: ['London Life', 'Friends'],
+    },
+    {
+      id: 5,
+      date: 'May 21, 2026',
+      location: 'ExCeL London',
+      caption: 'We shipped it. Presenting the DSF Companion at the Data Science Festival — over a year of work, live in front of hundreds of people. Lead Engineer badge and everything.',
+      image: '/images/blog/dsf-event.jpeg',
+      tags: ['Cyber Scallywags', 'DSF', 'Tech Event'],
+    },
+  ],
   nav: {
     sections: [
       { id: 'aboutSection', name: 'About' },
       { id: 'WhereIhaveWorkedSection', name: 'Experience' },
       { id: 'SomethingIveBuiltSection', name: 'Work' },
+      { id: 'blogSection', name: 'Tech Life' },
       { id: 'GetInTouchSection', name: 'Contact' },
     ],
-    resumeUrl: '/resume.pdf', // You can change the resume file name here if needed
+    resumeUrl: '/resume.pdf',
   },
-    // Other development-specific configuration options
-  };
-// Export the config object
-export default config;
+};

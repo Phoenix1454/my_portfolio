@@ -23,28 +23,6 @@ export default function AboutMe(props) {
   // To display them in two columns, we can split the array
   const firstHalf = technologiesForDisplay.slice(0, Math.ceil(technologiesForDisplay.length / 2));
   const secondHalf = technologiesForDisplay.slice(Math.ceil(technologiesForDisplay.length / 2));
-  
-  // Function to render the experience section from your config
-  const renderExperience = () => (
-    personalInfo.experience.map((job, index) => (
-      <div key={index} className="font-Header text-justify mb-4">
-        <span className="text-gray-400">
-          <span className="text-AAsecondary">
-            {job.title}
-          </span>{" "}
-          at{" "}
-          <span className="text-AAsecondary">{job.company}</span>:
-          <br />
-          {job.description.map((point, i) => (
-            <span key={i}>
-              &nbsp;&nbsp;- {point}
-              <br />
-            </span>
-          ))}
-        </span>
-      </div>
-    ))
-  );
 
   return (
     <div id="aboutSection" data-aos="fade-up" className="snap-start flex flex-col items-center py-20 bg-AAprimary">
@@ -91,14 +69,6 @@ export default function AboutMe(props) {
                     <br />
                   </div>
                 ))}
-              </span>
-            </div>
-
-            {/* Experience - Dynamic */}
-            <div className="font-Header text-justify">
-              <span className="text-gray-400">
-                <span className="text-AAsecondary">Experience:</span><br />
-                {renderExperience()}
               </span>
             </div>
 

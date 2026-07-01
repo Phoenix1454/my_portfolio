@@ -35,34 +35,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
         </motion.div>
       ))}
 
-      {/* 4. Use the resume URL from config */}
-      <a href={nav.resumeUrl} target={"_blank"} rel="noreferrer" onClick={() => { // <--- The correct way: assign an arrow function
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'resume_download', {
-        'event_category': 'engagement',
-        'event_label': 'Resume Download Button'
-      });
-    }
-  }}>
-        <motion.button
-          initial={{
-            y: -40,
-            opacity: 0,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-          }}
-          transition={{
-            type: "spring",
-            duration: props.finishedLoading ? 0 : 1.2,
-            delay: props.finishedLoading ? 0 : 10.2,
-          }}
-          className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
-        >
-          Resume
-        </motion.button>
-      </a>
+      {/* Resume button removed */}
     </div>
   );
 }

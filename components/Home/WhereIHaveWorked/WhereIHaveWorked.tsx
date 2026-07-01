@@ -3,7 +3,7 @@ import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 import ArrowIcon from "../../Icons/ArrowIcon";
 
 // 1. Import config data
-import config from '../../../config'; 
+import config from '../../../config';
 import JobDescription from "./Descriptions/JobDescription"; // Corrected import path
 
 export default function WhereIHaveWorked() {
@@ -54,6 +54,12 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
     Array(props.personalInfo.experience.length).fill(false)
   );
 
+  // Calculate dynamic values based on number of jobs
+  const numberOfJobs = props.personalInfo.experience.length;
+  const buttonHeight = 43; // Height of each button in pixels
+  const totalBarHeight = numberOfJobs * buttonHeight; // Total height for the vertical bar
+  const barSegmentHeight = buttonHeight; // Height of the animated bar segment
+
   React.useEffect(() => {
     // Set the first company to be active by default
     if (props.personalInfo.experience.length > 0) {
@@ -66,7 +72,7 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
   }, [props.personalInfo.experience]); // Re-run if experience data changes
 
   const handleButtonClick = (index: number, jobTitle: string) => {
-    setBarPosition(index * 43); // Update bar position
+    setBarPosition(index * buttonHeight); // Update bar position dynamically
     props.setDescriptionJob(jobTitle); // Update selected job title
     const newActiveState = Array(props.personalInfo.experience.length).fill(false);
     newActiveState[index] = true;
@@ -83,12 +89,11 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
         onClick={() => handleButtonClick(buttonProps.index, buttonProps.jobTitle)}
         className={`flex-none sm:text-sm text-xs text-center md:text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded font-mono
-             py-3 md:pl-6 md:px-4 md:w-44 w-32 duration-500
-             ${
-               companyNameBackgroundColorGreen[buttonProps.index]
-                 ? "bg-ResumeButtonHover text-AAsecondary"
-                 : "text-gray-500"
-             }`}
+             py-3 md:pl-6 md:px-4 md:w-64 w-48 duration-500
+             ${companyNameBackgroundColorGreen[buttonProps.index]
+            ? "bg-ResumeButtonHover text-AAsecondary"
+            : "text-gray-500"
+          }`}
       >
         {buttonProps.companyName}
       </button>
@@ -104,13 +109,15 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
     >
       {/* // ? left bar Holder */}
       <div
-        className=" hidden md:block bg-gray-500 relative h-0.5 w-34 md:h-[352px] translate-y-1 md:w-0.5
+        style={{ height: `${totalBarHeight}px` }}
+        className=" hidden md:block bg-gray-500 relative h-0.5 w-34 translate-y-1 md:w-0.5
         rounded md:order-1 order-2  "
       >
         {/* // ? animated left bar */}
         <motion.div
           animate={{ y: barPosition }} // Use 'y' for vertical animation
-          className={`absolute w-10 h-0.5 md:w-0.5 md:h-12 rounded bg-AAsecondary `}
+          style={{ height: `${barSegmentHeight}px` }}
+          className={`absolute w-10 h-0.5 md:w-0.5 rounded bg-AAsecondary `}
         ></motion.div>
       </div>
       {/* // ? Companies name as buttons - Dynamic from config */}
@@ -120,7 +127,7 @@ const CompaniesBar = (props: { setDescriptionJob: Function; personalInfo: any })
             <CompanyButton
               key={job.title} // Use the job title as the unique key
               index={index}
-              companyName={job.company} // You can still display the company name if you want
+              companyName={job.company}
               jobTitle={job.title} // Pass the unique job title to set the state
             />
           ))}
