@@ -9,6 +9,7 @@ import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 import TechLife from "../components/Home/TechLife/TechLife";
 import OpenSource from "../components/Home/OpenSource/OpenSource";
 import Blog from "../components/Home/Blog/Blog";
+import ChatWidget from "../components/ChatWidget/ChatWidget";
 import Footer from "../components/Footer/Footer";
 import AppContext from "../components/AppContextFolder/AppContext";
 import Aos from "aos";
@@ -121,6 +122,7 @@ export default function Home() {
       {/* ) : ( */}
       {/* <Maintenance /> */}
       {/* )} */}
+      <ChatWidget />
       {isProd && <Analytics />}
     </>
   );
